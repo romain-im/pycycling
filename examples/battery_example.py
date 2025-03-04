@@ -3,6 +3,7 @@ from bleak import BleakClient
 
 from pycycling.battery_service import BatteryService
 
+from configuration import Configuration
 
 async def run(address):
     async with BleakClient(address) as client:
@@ -13,9 +14,9 @@ async def run(address):
 
 if __name__ == "__main__":
     import os
-
+    conf = Configuration()
     os.environ["PYTHONASYNCIODEBUG"] = str(1)
 
-    device_address = "DEVICE_ADDRESS HERE"
+    device_address = conf.hr_address
     loop = asyncio.get_event_loop()
     loop.run_until_complete(run(device_address))

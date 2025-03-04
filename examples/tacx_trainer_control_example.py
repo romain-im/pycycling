@@ -2,7 +2,7 @@ import asyncio
 from bleak import BleakClient
 
 from pycycling.tacx_trainer_control import TacxTrainerControl
-
+from configuration import Configuration
 
 async def run(address):
     async with BleakClient(address) as client:
@@ -23,9 +23,9 @@ async def run(address):
 
 if __name__ == "__main__":
     import os
-
+    conf = Configuration()
     os.environ["PYTHONASYNCIODEBUG"] = str(1)
 
-    device_address = "EAAA3D1F-6760-4D77-961E-8DDAC1CC9AED"
+    device_address = conf.ht_address
     loop = asyncio.get_event_loop()
     loop.run_until_complete(run(device_address))

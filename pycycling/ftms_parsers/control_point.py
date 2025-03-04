@@ -53,7 +53,7 @@ def form_ftms_control_command(opcode: FTMSControlPointOpCode, parameter: int = 0
         return b"\x03" + parameter.to_bytes(2, "little", signed=True)
     elif opcode == FTMSControlPointOpCode.SET_TARGET_RESISTANCE_LEVEL:
         # parameter: uint8, 0.1 unitless
-        return b"\x04" + parameter.to_bytes(1, "little", signed=False)
+        return b"\x04" + parameter.to_bytes(2, "little", signed=False)
     elif opcode == FTMSControlPointOpCode.SET_TARGET_POWER:
         # parameter: sint16, 1W
         return b"\x05" + parameter.to_bytes(2, "little", signed=True)
